@@ -21,9 +21,9 @@ $pwd = md5($p1);
 
 
 try{
-	$sql="SELECT * FROM users where username='".$u1."' and password_hash='".$pwd."';";
+	$sql="SELECT * FROM users where username=? and password_hash=?;";
 	$res = $conn->prepare($sql);
-	$res->execute();
+	$res->execute(array($u1,$pwd));
 	$result = $res->fetch();
 	if($result['username']==''){
 		die("it looks like you didn't register or your data doesn't exist in database, please register in the index page");
