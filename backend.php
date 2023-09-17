@@ -5,6 +5,8 @@ session_start();
 $u1 = $_POST['uname'];
 $p1= $_POST['pwd'];
 
+$u1 = str_replace( array( '\'', '"',',' , ';', '<', '>' ), ' ', $u1);
+
 $_SESSION["u1"] = $u1;
 $_SESSION["pwd"] = md5($p1);
 
@@ -17,7 +19,6 @@ $pwd = md5($p1);
 // use exec() because no results are returned
 //$result = $conn->exec($sql);
 //echo $result;
-
 
 
 try{
@@ -41,7 +42,7 @@ try{
 	}
 }
 catch(PDOException $e) {
-  echo "Error: " . $e->getMessage();
+  echo "Error";
 }
 ?>
 </body>
