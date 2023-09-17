@@ -14,9 +14,9 @@ else
 	echo "forbidden page!!";
 }
 try{
-	$sql="SELECT * FROM users where username='admin1' and password_hash='".$pwd."';";
+	$sql="SELECT * FROM users where username='admin1' and password_hash=?;";
 	$res = $conn->prepare($sql);
-	$res->execute();
+	$res->execute(array($pwd));
 	$result = $res->fetch();
 
 	if($result['username']=='')
@@ -27,7 +27,7 @@ try{
 }
 catch(PDOException $e) 
 {
-	echo $sql . "<br>" . $e->getMessage();
+	echo "there was an error";
 }
 //echo "hello admin!";
 
@@ -49,16 +49,16 @@ try{
 	else
 	{
 	
-		  $sql = "UPDATE users SET ".$val_name." = ? where username = ?";
+		  $sql = "UPDATE users SET ? = ? where username = ?";
 		  $result = $conn->prepare($sql);
-		  $result->execute(array($val ,$u1));
+		  $result->execute(array($val_name,$val ,$u1));
 		  echo "data successfully changed<br>";
 	
 	}
 } 
 catch(PDOException $e) 
 {
-	echo $sql . "<br>" . $e->getMessage();
+	echo  "<br>there was an error";
 }
 $conn=null;
 ?>
