@@ -40,7 +40,7 @@ uploaded file
 		while($result = $res->fetch())
 		{
 			
-			echo "<tr><td>".$result['username']."</td>";
+			echo "<tr><td>".str_replace( array( '\'', '"',',' , ';', '<', '>' ), ' ', $result['username']);."</td>";
 			echo "<td>".$result['dob']."</td>";
 			echo "<td>".$result['filename']."</td></tr>";
 		}
