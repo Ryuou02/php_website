@@ -9,9 +9,9 @@ $password_hash = md5($password);
 $dob = $_POST["dob"];
 
 try{
-	$sql="SELECT * FROM users where username='".$username."'";
+	$sql="SELECT * FROM users where username=?";
 	$res = $conn->prepare($sql);
-	$res->execute();
+	$res->execute(array($username));
 	$rcount = $res->fetch();
 
 	if($rcount['username']=='')
@@ -29,7 +29,7 @@ try{
 	}
 } catch(PDOException $e) 
 	{
-	  echo $sql . "<br>" . $e->getMessage();
+	  echo "<br>there was an error";
 	}
 
 $conn = null;
