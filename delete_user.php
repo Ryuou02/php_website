@@ -5,7 +5,7 @@ require_once('connection.php');
 	$uname = $_SESSION["u1"];
 	$pwd = $_SESSION["pwd"];
 	
-	$sql="SELECT * FROM users where username='admin1' and password_hash=' ? ';";
+	$sql="SELECT * FROM users where username='admin1' and password_hash=?;";
 	$res = $conn->prepare($sql);
 	$res->execute(array($pwd));
 	$result = $res->fetch();
