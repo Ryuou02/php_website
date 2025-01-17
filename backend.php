@@ -5,7 +5,7 @@ session_start();
 $u1 = $_POST['uname'];
 $p1= $_POST['pwd'];
 
-$u1 = str_replace( array( '\'', '"',',' , ';', '<', '>' ), ' ', $u1);
+$u1 =  $u1;
 
 $_SESSION["u1"] = $u1;
 $_SESSION["pwd"] = md5($p1);
@@ -23,8 +23,7 @@ $pwd = md5($p1);
 
 try{
 	$sql="SELECT * FROM users where username=? and password_hash=?;";
-	$res = $conn->prepare($sql);
-	$res->execute(array($u1,$pwd));
+	$res = $conn->query("SELECT * FROM users where username=".$u1." and password_hash=".$pwd.";");
 	$result = $res->fetch();
 	if($result['username']==''){
 		die("it looks like you didn't register or your data doesn't exist in database, please register in the index page");
